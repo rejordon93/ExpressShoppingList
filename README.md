@@ -1,157 +1,91 @@
-Express Shopping List
-Express Shopping List is a simple JSON API application built with Node.js and Express. It provides endpoints to manage a shopping list, including adding items, retrieving items, updating item details, and deleting items.
+# Express Shopping List
 
-Prerequisites
-Node.js (version X.X.X)
-NPM (version X.X.X)
-Getting Started
-Clone the repository:
+This is a simple JSON API application built using Express.js to store a shopping list. The application uses an array to store shopping items, where each item is a JavaScript object with the keys `name` and `price`. Please note that the shopping list will be cleared each time the server restarts, as it is stored in memory.
 
-bash
-Copy code
-git clone https://github.com/your-username/express-shopping-list.git
-Install the dependencies:
+## Installation
 
-bash
-Copy code
-cd express-shopping-list
-npm install
-Start the server:
+1. Clone the repository to your local machine:
 
-bash
-Copy code
+   ```
+   git clone https://github.com/your-username/express-shopping-list.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd express-shopping-list
+   ```
+
+3. Install the dependencies by running the following command:
+
+   ```
+   npm install
+   ```
+
+## Usage
+
+To start the Express server and run the application, use the following command:
+
+```
 npm start
-The server will start running at http://localhost:3000.
+```
 
-API Endpoints
-The following API endpoints are available:
+The server will start on `http://localhost:3000`.
 
-GET /items: Get a list of shopping items.
+## Routes
 
-POST /items: Add a new item to the shopping list.
+The application provides the following routes:
 
-GET /items/:name: Get details of a specific item.
+- **GET /items**: Returns a list of shopping items.
 
-PATCH /items/:name: Update details of a specific item.
+  Example response:
+  ```json
+  [
+    {"name": "popsicle", "price": 1.45},
+    {"name": "cheerios", "price": 3.40}
+  ]
+  ```
 
-DELETE /items/:name: Delete a specific item.
+- **POST /items**: Adds a new item to the shopping list.
 
-Refer to the API documentation below for more details on each endpoint.
+  Example request body:
+  ```json
+  {"name": "popsicle", "price": 1.45}
+  ```
 
-API Documentation
-GET /items
-Returns a list of shopping items.
+  Example response:
+  ```json
+  {"added": {"name": "popsicle", "price": 1.45}}
+  ```
 
-Example Request:
+- **GET /items/:name**: Retrieves a single item's name and price.
 
-bash
-Copy code
-GET /items
-Example Response:
+  Example response:
+  ```json
+  {"name": "popsicle", "price": 1.45}
+  ```
 
-json
-Copy code
-[
-  {
-    "name": "popsicle",
-    "price": 1.45
-  },
-  {
-    "name": "cheerios",
-    "price": 3.40
-  }
-]
-POST /items
-Adds a new item to the shopping list.
+- **PATCH /items/:name**: Modifies a single item's name and/or price.
 
-Example Request:
+  Example request body:
+  ```json
+  {"name": "new popsicle", "price": 2.45}
+  ```
 
-bash
-Copy code
-POST /items
-Content-Type: application/json
+  Example response:
+  ```json
+  {"updated": {"name": "new popsicle", "price": 2.45}}
+  ```
 
-{
-  "name": "ice cream",
-  "price": 2.50
-}
-Example Response:
+- **DELETE /items/:name**: Deletes a specific item from the shopping list.
 
-json
-Copy code
-{
-  "added": {
-    "name": "ice cream",
-    "price": 2.50
-  }
-}
-GET /items/:name
-Returns details of a specific item.
+  Example response:
+  ```json
+  {"message": "Deleted"}
+  ```
 
-Example Request:
+Please note that `:name` in the routes should be replaced with the actual name of the item.
 
-bash
-Copy code
-GET /items/popsicle
-Example Response:
+## License
 
-json
-Copy code
-{
-  "name": "popsicle",
-  "price": 1.45
-}
-PATCH /items/:name
-Updates details of a specific item.
-
-Example Request:
-
-bash
-Copy code
-PATCH /items/popsicle
-Content-Type: application/json
-
-{
-  "name": "new popsicle",
-  "price": 2.45
-}
-Example Response:
-
-json
-Copy code
-{
-  "updated": {
-    "name": "new popsicle",
-    "price": 2.45
-  }
-}
-DELETE /items/:name
-Deletes a specific item from the shopping list.
-
-Example Request:
-
-bash
-Copy code
-DELETE /items/popsicle
-Example Response:
-
-json
-Copy code
-{
-  "message": "Deleted"
-}
-Testing
-To run the tests, use the following command:
-
-bash
-Copy code
-npm test
-The tests are written using the Supertest library and cover the various API endpoints and their expected behavior.
-
-Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request.
-
-License
-This project is licensed under the MIT License.
-
-Feel free to customize this README file according to your project's specific details and requirements.
+This project is licensed under the [MIT License](LICENSE).
